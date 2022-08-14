@@ -90,7 +90,7 @@ public class StackUsingArray {
 		
 		sua.pop();
 		sua.pop();
-		System.out.println("MY stack: );
+		System.out.println("MY stack: ");
 		System.out.println("element at top of stack"+ " "+sua.peek());
 		
 		
