@@ -1,0 +1,115 @@
+package com.datastructure;
+
+// creating linked list class which contains inner node class with data and next 
+public class LinkedList {
+	
+	static Node head; 
+	
+	//static so that it can be called in main
+	public static class Node {
+		
+		int data;
+		Node next;
+		public Node(int data) {                                       
+			super();
+			this.data = data;
+			this.next=null;
+		}
+		
+		
+		
+	}
+	// insert method to insert node at front,last
+	public static LinkedList insert(LinkedList list,int data) {
+		
+		//create a new node with given data
+		Node newNode = new Node(data);
+		
+		//if linkedlist is empty make new node as head
+		if(list.head ==null) {
+			list.head = newNode;
+			
+		}else {
+			
+			//traverse till the last node and insert the last node
+			Node last = list.head;
+			while(last.next!=null) {
+				
+				last = last.next;
+			}
+			
+			last.next= newNode;
+		}
+		
+		return list;
+		
+		
+		
+	}
+	
+	public static LinkedList insertMiddle(LinkedList list, int position, int data) {
+		
+		Node currNode = list.head ,prev=null, mid=null;
+		Node midNode = new Node(data);
+		
+		int count = 1;
+		
+		
+		while(currNode!=null && count!=position) {
+		       
+			prev = currNode;
+			currNode=currNode.next;
+			
+			count++;
+			
+		} 
+			
+			mid = prev.next;
+			prev.next= midNode;
+			midNode.next=mid;
+		
+		 /* midNode.next= prev.next;
+		  prev.next=midNode;*/
+		  
+		
+	
+		return list;
+      }	
+		
+	
+
+	public static void main(String[] args) {
+		
+        LinkedList ll = new LinkedList();
+      
+        ll = insert(ll,1);
+        ll = insert(ll,2);
+        ll = insert(ll,3);
+       
+        ll = insert(ll,4);
+        ll = insert(ll,5);
+        ll = insert(ll,6);
+        ll = insert(ll,7);
+        ll = insert(ll,8);
+        ll = insert(ll,9);
+        ll = insert(ll,10);
+        ll = insertMiddle(ll,5,31);
+        
+        print(ll);
+        
+        
+        
+	}
+
+	public static void print(LinkedList list) {
+		 
+		 Node n = list.head;
+		 while(n!=null) {
+			 System.out.println(n.data+" ");
+			 n=n.next;
+		 }
+		// TODO Auto-generated method stub
+		
+	}
+
+}

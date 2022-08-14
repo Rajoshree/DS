@@ -1,0 +1,188 @@
+package com.datastructure;
+
+import com.datastructure.exception.ReachedLastNodeException;
+
+// creating linked list class which contains inner node class with data and next 
+public class LinkedList {
+	
+	static Node head; 
+	
+	//static so that it can be called in main
+	public static class Node {
+		
+		int data;
+		Node next;
+		public Node(int data) {                                       
+			super();
+			this.data = data;
+			this.next=null;
+		}
+		
+		
+		
+	}
+	// insert method to insert node at front,last
+	public static LinkedList insert(LinkedList list,int data) {
+		
+		//create a new node with given data
+		Node newNode = new Node(data);
+		
+		//if linkedlist is empty make new node as head
+		if(list.head ==null) {
+			list.head = newNode;
+			
+		}else {
+			
+			//traverse till the last node and insert the last node
+			Node last = list.head;
+			while(last.next!=null) {
+				
+				last = last.next;
+			}
+			
+			last.next= newNode;
+		}
+		
+		return list;
+		
+		
+		
+	}
+	//insert node at middle
+	public static LinkedList insertMiddle(LinkedList list, int position, int data) throws ReachedLastNodeException {
+		
+		Node currNode = list.head ,prev=null, mid=null;
+		Node midNode = new Node(data);
+		
+		int count = 1;
+		
+		
+		while(currNode!=null && count!=position) {
+		       
+			prev = currNode;
+			currNode=currNode.next;
+			
+			count++;
+			
+		} 
+		if(prev.next!= null) {
+		
+		mid = prev.next;
+		prev.next= midNode;
+		midNode.next=mid;
+		
+		System.out.println("Inserted at position"+" "+position);
+     }else {
+    	 throw new ReachedLastNodeException("Reached last node of the linked list cannot insert"+" "+data+" "+"position"+" "+position);
+     }
+		return list;
+      }	
+	
+	
+	//method to delete  node
+ public static  LinkedList deleteByValue(LinkedList list, int value) {
+	 
+	 Node currNode = list.head, prev=null;
+	 
+	 // delete value is headnode
+	 
+	 if(currNode!=null && currNode.data==value) {
+		  
+		 list.head=currNode.next;
+		 System.out.println("found and deleted"+" "+value);
+		 
+		 return list;
+		 
+	 }
+	 
+	 // delete node in between and in last
+	 
+	  while (currNode != null && currNode.data != value) {
+          // If currNode does not hold value
+          // continue to next node
+          prev = currNode;
+          currNode = currNode.next;
+      }
+
+      // If the value is present, it should be at currNode
+      // Therefore the currNode shall not be null
+      if (currNode != null) {
+          // Since the value is at currNode
+          // Unlink currNode from linked list
+          prev.next = currNode.next;
+
+          // Display the message
+          System.out.println(value + " found and deleted");
+      }
+
+
+      // If value is not present in linked list
+      // currNode should be null
+      if (currNode == null) {
+          // Display the message
+          System.out.println(value + " not found");
+      }
+	 return list;
+ }
+ 
+ 
+ //traverse linkedlist
+ public static void print(LinkedList list) {
+	 
+	 Node n = list.head;
+	 while(n!=null) {
+		 System.out.print(n.data+" ");
+		 
+		 n=n.next;
+	 }
+	 System.out.println();
+	// TODO Auto-generated method stub
+	
+}
+		
+	
+
+	public static void main(String[] args) {
+		
+        LinkedList ll = new LinkedList();
+      
+        ll=insert(ll,1);
+        ll=insert(ll,2);
+        ll=insert(ll,3);
+       
+        ll=insert(ll,4);
+        ll=insert(ll,5);
+        ll=insert(ll,6);
+        ll=insert(ll,7);
+        ll=insert(ll,8);
+        ll=insert(ll,9);
+        ll=insert(ll,10);
+        print(ll);
+        
+        
+        try {
+        	 ll=insertMiddle(ll,8,88);
+        	 ll=insertMiddle(ll,11,31);
+        	 ll.insertMiddle(ll,22, 100);
+        }catch(ReachedLastNodeException e) {
+        	System.out.println(e.getMessage());
+        }
+        
+        print(ll);
+        
+        ll=deleteByValue(ll,7);
+        ll=deleteByValue(ll,10);
+        ll=deleteByValue(ll, 22);
+
+        print(ll);
+        
+     /// we can access the method by ll.methodName() but the methods are static so above is the static way 
+        //to access linkedlist
+        
+        
+        
+	}
+
+	
+
+}

@@ -1,0 +1,45 @@
+package com.datastructure;
+
+public class LinkedList {
+	
+	static Node head;
+	public static class Node {
+		
+		int data;
+		Node next;
+		public Node(int data) {
+			super();
+			this.data = data;
+			this.next=null;
+		}
+		
+		
+		
+	}
+
+	public static void main(String[] args) {
+		
+        LinkedList ll = new LinkedList();
+        ll.head = new Node(22);
+        Node second = new Node(44);
+        Node third = new Node (55);
+        ll.head.next = second;
+        second.next = third;
+        print();
+        
+        
+        
+	}
+
+	public static void print() {
+		 
+		 Node n = head;
+		 while(n!=null) {
+			 System.out.println(n.data+" ");
+			 n=n.next;
+		 }
+		// TODO Auto-generated method stub
+		
+	}
+
+}

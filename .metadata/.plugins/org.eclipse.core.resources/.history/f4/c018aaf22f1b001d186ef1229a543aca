@@ -1,0 +1,81 @@
+package com.datastructure;
+
+public class LinkedList {
+	
+	static Node head;
+	public static class Node {
+		
+		int data;
+		Node next;
+		public Node(int data) {                                       
+			super();
+			this.data = data;
+			this.next=null;
+		}
+		
+		
+		
+	}
+	
+	public static LinkedList insert(LinkedList list,int data) {
+		
+		//create a new node with given data
+		Node new_node = new Node(data);
+		
+		//if linkedlist is empty make new node as head
+		if(list.head ==null) {
+			list.head = new_node;
+			
+		}else {
+			
+			//traverse till the last node and insert the last node
+			Node last = list.head;
+			while(last.next!=null) {
+				
+				last = last.next;
+			}
+			
+			last = new_node;
+		}
+		
+		return list;
+		
+		
+		
+	}
+
+	public static void main(String[] args) {
+		
+        LinkedList ll = new LinkedList();
+       /* ll.head = new Node(22);
+        Node second = new Node(44);
+        Node third = new Node (55);
+        ll.head.next = second;
+        second.next = third;*/
+        
+        ll = insert(ll,1);
+        ll = insert(ll,61);
+        ll = insert(ll,18);
+        ll = insert(ll,31);
+        ll = insert(ll,12);
+        ll = insert(ll,11);
+        ll = insert(ll,91);
+        
+        print(ll);
+        
+        
+        
+	}
+
+	public static void print(LinkedList list) {
+		 
+		 Node n = list.head;
+		 while(n!=null) {
+			 System.out.println(n.data+" ");
+			 n=n.next;
+		 }
+		// TODO Auto-generated method stub
+		
+	}
+
+}
